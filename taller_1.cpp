@@ -1,3 +1,7 @@
+/*programa realizado por Jorge Alberto Parra y Luisa Fernanda Andrade.
+fecha: 22 de febrero 2018.
+*/
+
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
@@ -25,17 +29,23 @@ struct  competidor{
 void menu ();
 void sumaNumeros();
 void sumaPares();
+void sumaImpares();
 void tablasDeMultiplicar();
 void muestraFactorial();
+void fibonacci();
 void ArreglosDecimales();
-void ArreglosMultiplicacion();
+void  ArreglosCerosyUnos();
+void ArregloPotencia();
+int potencia(int , int );
 void consultaMesYcodigoAscii();
 void asciiDeVocal(char);
+void muestraAscciNumero();
 void mesSsistema();
 void matrizManual();
 void matrizAutmatico();
 void muestraNotas(estudiante[], int);
 void MuestraCompetidor();
+
 
 int main() {
 	
@@ -50,23 +60,31 @@ void menu (){
 	int longitud=0;
 	char vocal=0;
 	
-	while (opcion!=12){
+	
+	
+	while (opcion!=15){
 		
 		printf ("\n\n********** MENU **********\n\n");
 		
 		
-		printf ("1. Sumar los n˙meros del 1 a 100.\n");
-		printf ("2. Sumar los n˙meros pares del 1 al 50.\n");
-		printf ("3. Imprimir las tablas de multiplicar de un n˙mero, del 1 al 20.\n");
-		printf ("4. Solucionar el factorial de un n˙mero.\n");
-		printf ("5. Declarar un array de numÈricos decimales e introducir en Èl....\n");
-		printf ("6. ingresar dos valores, y de acuerdo a los valores ingresado,mostrar en....\n");
-		printf ("7. Consultar el mes del sistema e imprimir el mes en espaÒol.\n");
-		printf ("8. Crear un programa que devuelva el cÛdigo ascii de una vocal ingresada.\n");
-		printf ("9. Crear una matriz de 3x3, completa sus valores desde el teclado y...\n");
-		printf ("10. Crear una matriz de 3x3 y llenarla de manera autom·tica por el sistema.\n");
-		printf ("11. ingresar el nombre y 3 notas de N alumnos, almacenarlos en un array...,\n");
-		printf ("12. hacer un estructura llamada competidor, que tendra los siguentes.....\n\n");
+		printf ("1. Sumar los n√∫meros del 1 a 100.\n");
+		printf ("2. Sumar los n√∫meros pares del 1 al 50.\n");
+		printf ("3. Sumar los n√∫meros impares del 1 al 50.\n");
+		printf ("4. Imprimir las tablas de multiplicar de un n√∫mero, del 1 al 20.\n");
+		printf ("5. Solucionar el factorial de un n√∫mero.\n");
+		printf ("6. Solucionar el n√∫mero de fibonacci.\n");
+		printf ("7. Declarar un array de num√©ricos decimales e introducir en √©l....\n");
+		printf ("8. crear matriz de ceros y unos(tama√±o definido por el usuario)\n");
+		printf ("9. crear matriz 4X4 y mostrar numeros ingresados y elevarlos a 2,3,4\n");
+		printf ("10. Consultar el mes del sistema e imprimir el mes en espa√±ol.\n");
+		printf ("11. Crear un programa que devuelva el c√≥digo ascii de una vocal ingresada.\n");
+		printf ("12. Crear un programa que devuelva el c√≥digo ascii de un numero ingresado.\n");
+		printf ("13 Crear una matriz de 3x3, completa sus valores desde el teclado y...\n");
+		printf ("14. Crear una matriz de 3x3 y llenarla de manera autom√°tica por el sistema.\n");
+		printf ("15. Crear una matriz de 3x3 y llenarla con numeros primos.\n");
+		printf ("16. ingresar el nombre y 3 notas de N alumnos, almacenarlos en un array...,\n");
+		printf ("17. hacer un estructura llamada competidor, que tendra los siguentes.....\n");
+		
 		
 		printf ("ingrese el numero segun su opcion: ");
 		scanf ("%d",&opcion);
@@ -77,25 +95,31 @@ void menu (){
 		break;
 		case 2: sumaPares();
 		break;
-		case 3: tablasDeMultiplicar();
+		case 3: sumaImpares();
 		break;
-		case 4: muestraFactorial();
+		case 4: tablasDeMultiplicar();
 		break;
-		case 5: ArreglosDecimales();
+		case 5: muestraFactorial();
 		break;
-		case 6: ArreglosMultiplicacion();
+		case 6: fibonacci();
 		break;
-		case 7: mesSsistema();
+		case 7: ArreglosDecimales();
 		break;
-		case 8: asciiDeVocal(vocal);
+		case 8: ArreglosCerosyUnos();
+	    break;
+		case 9: ArregloPotencia();
+	    break;
+		case 10: mesSsistema();
 		break;
-		case 9: matrizManual();
+		case 11: asciiDeVocal(vocal);
 		break;
-		case 10: matrizAutmatico();
+		case 12: muestraAscciNumero();
 		break;
-		case 11: muestraNotas(alumno,longitud);
+		case 13: matrizManual();
 		break;
-		case 12: MuestraCompetidor();
+		case 14: muestraNotas(alumno,longitud);
+		break;
+		case 15: MuestraCompetidor();
 		break;
 		default: printf ("opcion no valida.");
 		break;
@@ -133,6 +157,22 @@ void sumaPares(){
 		j++;
 	}
 	printf ("%d", acumulador);	
+}
+
+void sumaImpares(){
+	
+	int acumulador=0;	
+	int num=1;
+	
+	while(num<=50){
+		
+		if (num%2!= 0){
+			
+			acumulador=acumulador+num;
+		}
+		num++;
+	}
+	printf("%d", acumulador);
 }
 
 void tablasDeMultiplicar(){
@@ -174,6 +214,28 @@ void muestraFactorial(){
 	printf ("%d", factorial);
 }
 
+void fibonacci(){
+	
+	int i;
+	int fibonacci=0;
+	int anterior=0;
+	int siguiente=1;
+	
+	printf("%d\n",anterior);
+	printf("%d\n",siguiente);
+	
+	for (i=1; i<=20-1; i++){
+		
+		fibonacci=anterior+siguiente;
+		anterior=siguiente;
+		siguiente=fibonacci;
+		
+		printf ("%d",fibonacci );
+		
+		printf ("\n");
+	}
+}
+
 void ArreglosDecimales(){
 	
 	int i;
@@ -186,22 +248,104 @@ void ArreglosDecimales(){
 	}	
 }
 
-void ArreglosMultiplicacion(){
+void ArreglosCerosyUnos(){
 	
-	int arreglo[2];
+	int num1;
+	int num2;
 	int i;
-	int producto;
+	int j;
+	int matriz[20][20];
+
+	printf("ingrese el numero de filas de la matriz: \n");
+	scanf("%d",&num1 );
 	
-	printf("ingrese dos valores: \n");
+	printf("ingrese el numero de columnas de la matriz: \n");
+	scanf("%d",&num2 );
 	
-	for (i=0; i<2; i++){
+	
+	
+	for (i=0; i<num1; i++){
 		
-		scanf("%d", &arreglo[i]);
+		for (j=0; j<num2; j++){
+			
+			matriz[i][j]=0 + rand() % ((1+1)-0);
+		}
 	}
 	
-	producto=arreglo[0]*arreglo[1];
+	for (i=0; i<num1; i++){
+		
+		for (j=0; j<num2; j++){
+			
+		 printf ("%d",matriz[i][j]);
+			
+		}
+		printf ("\n");
+	}
+	
+}
 
-	printf("%d * %d = %d",arreglo[0],arreglo[1], producto);
+void ArregloPotencia(){
+	
+	int matriz [4][4];
+	
+	int i;
+	int j;
+	
+	printf("ingrese cuatro numeros: \n");
+	
+	for (i=0; i<4; i++){
+		
+		for (j=0; j<4; j++){
+			
+			if (j==0){
+				
+				scanf("%d",&matriz[i][j]);
+				
+			}
+			if (j==1){
+				
+				matriz[i][j]=potencia(matriz[i][0], 2);
+				
+			}
+			if (j==2){
+				
+				matriz[i][j]=potencia(matriz[i][0], 3);
+				
+			}
+			if (j==3){
+				
+				matriz[i][j]=potencia(matriz[i][0], 4);
+				
+			}
+		}
+	}
+	
+	printf ("\n");
+	
+	for (i=0; i<4; i++){
+		
+		for (j=0; j<4; j++){
+			
+			printf ("%d",matriz[i][j]);
+			printf ("\t");
+		}
+		printf ("\n");
+	}
+}
+
+int potencia(int num1, int num2){
+	
+	int i;
+	int aux=num1;
+	int potencia=0;
+	
+	for (i=0; i<num2-1; i++){
+		
+		potencia=aux*num1;
+		aux=potencia;
+	}
+	
+	return potencia;
 }
 
 void mesSsistema(){
@@ -298,6 +442,29 @@ void matrizManual(){
 	printf("\nla suma de los elementos de la matriz es %d= ",suma);
 }
 
+void muestraAscciNumero(){
+	
+	int numero;
+	
+	
+	printf ("ingrese una numero del 0 al 9: ");
+	scanf("%d", &numero);
+	
+	if (numero!=0 && numero!=1 && numero!=2 && numero!=3 && numero!=4 && numero!=5 && numero!=6 && numero!=7 && numero!=8 && numero!=9){
+		
+		printf("el caracter ingresado no esta en el rango o no es un numero. ");	
+		
+	}else{
+		
+		char caracter = '0' + numero;
+		
+		printf("el numero %c en el codigo ascii equivale a %d ",caracter, caracter);
+	}
+	
+}
+	
+	
+
 void matrizAutmatico(){
 	
 	srand(time(NULL));
@@ -341,7 +508,7 @@ void muestraNotas(estudiante alumno[], int longitud){
 	
 	for (i=0; i<longitud; i++){
 		
-		printf("alumno N∞ %d", i+1);
+		printf("alumno N¬∞ %d", i+1);
 		printf("\n");
 		printf("\n");
 		printf("nombre: ");
@@ -431,6 +598,5 @@ void MuestraCompetidor(){
 	
 	printf("NOMBRE: %s \rEDAD:   %d \nSEXO:   %s \rCLUB:   %s \rCATEGORIA: %s ",jugador.nombre, jugador.edad, jugador.sexo, jugador.club, categoria);
 }
-
 	
 

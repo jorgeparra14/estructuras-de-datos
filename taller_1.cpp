@@ -7,6 +7,20 @@ fecha: 22 de febrero 2018.
 #include <stdlib.h>
 #include <string.h>
 
+struct promedio{
+	float nota1;
+	float nota2;
+	float nota3;
+}prom;
+
+struct alumno{
+	char nombre[20];
+	char sexo[20];
+	int edad;
+	struct promedio prom;
+	
+}estudi[100];
+
 struct estudiante{
 	
 	char nombre[40];
@@ -37,15 +51,18 @@ void ArreglosDecimales();
 void  ArreglosCerosyUnos();
 void ArregloPotencia();
 int potencia(int , int );
+void asciiDeVocal();
 void consultaMesYcodigoAscii();
-void asciiDeVocal(char);
 void muestraAscciNumero();
 void mesSsistema();
 void matrizManual();
 void matrizAutmatico();
+void matrizDePrimos();
 void muestraNotas(estudiante[], int);
 void MuestraCompetidor();
-
+void strucPromAlumn();
+void strucPromAlumn2();
+void switchFunciones();
 
 int main() {
 	
@@ -58,14 +75,10 @@ void menu (){
 	
 	int opcion;
 	int longitud=0;
-	char vocal=0;
-	
-	
-	
-	while (opcion!=15){
+
+	while (opcion!=17){
 		
 		printf ("\n\n********** MENU **********\n\n");
-		
 		
 		printf ("1. Sumar los números del 1 a 100.\n");
 		printf ("2. Sumar los números pares del 1 al 50.\n");
@@ -74,19 +87,19 @@ void menu (){
 		printf ("5. Solucionar el factorial de un número.\n");
 		printf ("6. Solucionar el número de fibonacci.\n");
 		printf ("7. Declarar un array de numéricos decimales e introducir en él....\n");
-		printf ("8. crear matriz de ceros y unos(tamaño definido por el usuario)\n");
-		printf ("9. crear matriz 4X4 y mostrar numeros ingresados y elevarlos a 2,3,4\n");
-		printf ("10. Consultar el mes del sistema e imprimir el mes en español.\n");
-		printf ("11. Crear un programa que devuelva el código ascii de una vocal ingresada.\n");
-		printf ("12. Crear un programa que devuelva el código ascii de un numero ingresado.\n");
-		printf ("13 Crear una matriz de 3x3, completa sus valores desde el teclado y...\n");
-		printf ("14. Crear una matriz de 3x3 y llenarla de manera automática por el sistema.\n");
-		printf ("15. Crear una matriz de 3x3 y llenarla con numeros primos.\n");
-		printf ("16. ingresar el nombre y 3 notas de N alumnos, almacenarlos en un array...,\n");
-		printf ("17. hacer un estructura llamada competidor, que tendra los siguentes.....\n");
+		printf ("8. crear arreglo de ceros y unos(tamaño definido por el usuario)\n");
+		printf ("9. crear arreglo 4X4 y mostrar numeros ingresados y elevarlos a 2,3,4\n");
+		printf ("10. switch( muetra: mes, ascii de vocal y ascii de numero del 0 al 9)\n");
+		printf ("11 Crear una matriz de 3x3, completa sus valores desde el teclado y...\n");
+		printf ("12. Crear una matriz de 3x3 y llenarla de manera automática por el sistema.\n");
+		printf ("13. Crear una matriz de 3x3 y llenarla con numeros primos.\n");
+		printf ("14. ingresar el nombre y 3 notas de N alumnos, almacenarlos en un array...,\n");
+		printf ("15. hacer un estructura llamada competidor, que tendra los siguentes.....\n");
+		printf ("16. hacer estructura anidada de alumno y promedio de notas\n");
+		printf ("17. hacer estructura anidada de alumno,nota mayor y menor\n");
+		printf ("0. salir\n");
 		
-		
-		printf ("ingrese el numero segun su opcion: ");
+		printf ("\ningrese el numero segun su opcion: ");
 		scanf ("%d",&opcion);
 		
 		switch (opcion){
@@ -109,19 +122,25 @@ void menu (){
 	    break;
 		case 9: ArregloPotencia();
 	    break;
-		case 10: mesSsistema();
+		case 10: switchFunciones();
+	    break;
+		case 11: matrizManual();
 		break;
-		case 11: asciiDeVocal(vocal);
+		case 12: matrizAutmatico();
 		break;
-		case 12: muestraAscciNumero();
-		break;
-		case 13: matrizManual();
+		case 13: matrizDePrimos();
 		break;
 		case 14: muestraNotas(alumno,longitud);
 		break;
 		case 15: MuestraCompetidor();
 		break;
+		case 16: strucPromAlumn();
+		break;
+		case 17: strucPromAlumn2();
+		break;
 		default: printf ("opcion no valida.");
+		break;
+		case 0: exit(0);
 		break;
 		}
 	}
@@ -183,7 +202,7 @@ void tablasDeMultiplicar(){
 	
 	resultado=0;
 	
-   printf("ingrese el numero a hallar tabla de multiplicar: ");
+   printf("\ningrese el numero a hallar tabla de multiplicar: ");
    scanf("%d",&num);
 	
 	for (i=1; i<21; i++){
@@ -200,7 +219,7 @@ void muestraFactorial(){
 	int num;
 	int factorial;
 	
-	printf("ingrese el numero para hallar su factorial: ");
+	printf("\ningrese el numero para hallar su factorial: ");
 	scanf("%d",&num);
 	
 	factorial=1;
@@ -256,13 +275,11 @@ void ArreglosCerosyUnos(){
 	int j;
 	int matriz[20][20];
 
-	printf("ingrese el numero de filas de la matriz: \n");
+	printf("\ningrese el numero de filas de la matriz: \n");
 	scanf("%d",&num1 );
 	
 	printf("ingrese el numero de columnas de la matriz: \n");
 	scanf("%d",&num2 );
-	
-	
 	
 	for (i=0; i<num1; i++){
 		
@@ -280,8 +297,7 @@ void ArreglosCerosyUnos(){
 			
 		}
 		printf ("\n");
-	}
-	
+	}	
 }
 
 void ArregloPotencia(){
@@ -291,7 +307,7 @@ void ArregloPotencia(){
 	int i;
 	int j;
 	
-	printf("ingrese cuatro numeros: \n");
+	printf("\ningrese cuatro numeros: \n");
 	
 	for (i=0; i<4; i++){
 		
@@ -386,9 +402,11 @@ void mesSsistema(){
 	}	
 }
 
-void asciiDeVocal(char vocal){
+void asciiDeVocal(){
 	
-	printf ("ingrese una vocal: ");
+	char vocal;
+	
+	printf ("\ningrese una vocal: ");
 	fflush(stdin);
 	scanf("%c", &vocal);
 	
@@ -410,7 +428,7 @@ void matrizManual(){
 	int suma=0;;
 	
 	
-	printf("ingrese los 9 numeros: \n");
+	printf("\ningrese los 9 numeros: \n");
 	
 	for (i=0; i<3; i++){
 		
@@ -427,6 +445,8 @@ void matrizManual(){
 		for (j=0; j<3; j++){
 			
 			printf("%d",matriz[i][j]);
+			
+			printf("\t");
 		}
 		printf("\n");
 	}
@@ -439,15 +459,14 @@ void matrizManual(){
 		}
 	}
 	
-	printf("\nla suma de los elementos de la matriz es %d= ",suma);
+	printf("\nla suma de los elementos de la matriz es: %d ",suma);
 }
 
 void muestraAscciNumero(){
 	
 	int numero;
-	
-	
-	printf ("ingrese una numero del 0 al 9: ");
+
+	printf ("\ningrese una numero del 0 al 9: ");
 	scanf("%d", &numero);
 	
 	if (numero!=0 && numero!=1 && numero!=2 && numero!=3 && numero!=4 && numero!=5 && numero!=6 && numero!=7 && numero!=8 && numero!=9){
@@ -460,10 +479,7 @@ void muestraAscciNumero(){
 		
 		printf("el numero %c en el codigo ascii equivale a %d ",caracter, caracter);
 	}
-	
 }
-	
-	
 
 void matrizAutmatico(){
 	
@@ -490,6 +506,64 @@ void matrizAutmatico(){
 		printf("\n");
 	}	
 }
+
+void matrizDePrimos(){
+	
+	int matriz[3][3];
+	int i; 
+	int j;
+	int k;
+	int numero;
+	int primo;
+	int contador=0;
+	
+	srand (time(NULL));
+	
+	for (i=0; i<3; i++){
+		
+		for (j=0; j<3; j++){
+			
+			literal1:
+			
+			contador=0;
+			
+			numero = 1 + rand() % ((100+1)-1);
+			
+			for (k=1; k<=numero; k++){
+				
+				if (numero%k==0){
+					
+					contador++;
+				}
+			}
+			
+			if (contador==2){
+				
+				primo=numero;
+			}else{
+				
+				goto literal1;
+			}
+			
+			matriz[i][j]=primo;	
+			
+			primo=0;
+		}
+	}
+	
+	for (i=0; i<3; i++){
+		
+		for (j=0; j<3; j++){
+			
+			printf("%d",matriz[i][j]);
+			
+			printf("\t");
+		}
+		
+		printf("\n");
+	}
+}
+
 void muestraNotas(estudiante alumno[], int longitud){
 	
 	int i;
@@ -497,7 +571,7 @@ void muestraNotas(estudiante alumno[], int longitud){
 	char auxiliar2[40];
 	int posicion;
 	
-	printf ("ingrese la cantidad de alumnos: ");
+	printf ("\ningrese la cantidad de alumnos: ");
 	scanf("%d",&longitud);
 	
 	printf("\n");
@@ -561,7 +635,7 @@ void MuestraCompetidor(){
 	
     char categoria[20];
 	
-	printf("ingrese los datos del competidor: \n\n");
+	printf("\ningrese los datos del competidor: \n\n");
 	
 	printf("NOMBRE: ");
 	fflush(stdin);
@@ -589,7 +663,6 @@ void MuestraCompetidor(){
 	}else if (jugador.edad>30){
 		
 		strcpy(categoria,"MAYOR");
-		
 	}
 	
 	printf("\n");
@@ -598,5 +671,142 @@ void MuestraCompetidor(){
 	
 	printf("NOMBRE: %s \rEDAD:   %d \nSEXO:   %s \rCLUB:   %s \rCATEGORIA: %s ",jugador.nombre, jugador.edad, jugador.sexo, jugador.club, categoria);
 }
-	
 
+void strucPromAlumn(){
+	
+	float promedioEstudiante[100];
+	int num;
+	int i;
+	
+	printf ("\ningrese la cantidad de estudiantes: ");
+	scanf("%d", &num);
+	
+	for (i=0; i<num; i++){
+		
+		printf ("\ningrese los datos del estudiante numero %d: \n\n",i+1);
+		
+		printf ("nombre: ");
+		fflush(stdin);
+		fgets(estudi[i].nombre,20,stdin);
+		
+		printf ("sexo:   ");
+		fflush(stdin);
+		fgets(estudi[i].sexo,20,stdin);
+		
+		printf ("edad:   ");
+		scanf("%d",&estudi[i].edad);
+		
+		printf ("\ningrese las notas del estudiante numero %d: \n\n", i+1);
+		
+		printf ("nota1: ");
+		scanf("%f",&estudi[i].prom.nota1);
+		printf ("nota2: ");
+		scanf("%f",&estudi[i].prom.nota2);
+		printf ("nota3: ");
+		scanf("%f",&estudi[i].prom.nota3);
+		
+		promedioEstudiante[i]=(estudi[i].prom.nota1+estudi[i].prom.nota2+estudi[i].prom.nota3)/3;
+	}
+	
+	for (i=0; i<num; i++){
+		
+		printf ("\n\nlos datos del estudiante numero %d son: \n\nnombre:    %ssexo:      %sedad:      %d \npromedio:  %.2f ",i+1,estudi[i].nombre, estudi[i].sexo, estudi[i].edad, promedioEstudiante[i]);
+	}	
+}
+
+void strucPromAlumn2(){
+	
+	float promedioEstudiante[100];
+	int num;
+	int i;
+	float auxiliar;
+	char auxiliar2[40];
+	char auxiliar3[20];
+	int posicion;
+	int aux;
+	
+	printf ("\ningrese la cantidad de estudiantes: ");
+	scanf("%d", &num);
+	
+	for (i=0; i<num; i++){
+		
+		printf ("\ningrese los datos del estudiante numero %d: \n\n",i+1);
+		
+		
+		printf ("nombre: ");
+		fflush(stdin);
+		fgets(estudi[i].nombre,20,stdin);
+		
+		printf ("sexo:   ");
+		fflush(stdin);
+		fgets(estudi[i].sexo,20,stdin);
+		
+		printf ("edad:   ");
+		scanf("%d",&estudi[i].edad);
+		
+		printf ("\ningrese las notas del estudiante numero %d: \n\n", i+1);
+		
+		printf ("nota1: ");
+		scanf("%f",&estudi[i].prom.nota1);
+		printf ("nota2: ");
+		scanf("%f",&estudi[i].prom.nota2);
+		printf ("nota3: ");
+		scanf("%f",&estudi[i].prom.nota3);
+		
+		promedioEstudiante[i]=(estudi[i].prom.nota1+estudi[i].prom.nota2+estudi[i].prom.nota3)/3;
+		
+	}
+	
+	for (i=0; i<num; i++){
+		
+		posicion = i;
+		auxiliar = promedioEstudiante[i];
+		strcpy(auxiliar2, estudi[i].nombre);
+		strcpy(auxiliar3, estudi[i].sexo);
+		aux=estudi[i].edad;
+		
+		while ((posicion>0)&&(auxiliar< promedioEstudiante[posicion-1])){			
+			promedioEstudiante[posicion] = promedioEstudiante[posicion-1];
+			strcpy(estudi[posicion].nombre,estudi[posicion-1].nombre);
+			strcpy(estudi[posicion].sexo,estudi[posicion-1].sexo);
+			estudi[posicion].edad=estudi[posicion-1].edad;
+			posicion --;
+		}
+		
+		promedioEstudiante[posicion] = auxiliar;
+		strcpy(estudi[posicion].nombre , auxiliar2);
+		strcpy(estudi[posicion].sexo , auxiliar3);
+		estudi[posicion].edad=aux;
+	}
+	
+	printf("\n");
+	printf("\nel alumno con MENOR promedio es: \n\nnombre: %ssexo: %sedad: %d \npromedio: %.2f\n",estudi[0].nombre, estudi[0].sexo, estudi[0].edad, promedioEstudiante[0]);
+	printf("\nel alumno con MAYOR promedio es: \n\nnombre: %ssexo: %sedad: %d \npromedio: %.2f\n",estudi[num-1].nombre,estudi[num-1].sexo,estudi[num-1].edad, promedioEstudiante[num-1]);
+	
+}
+
+void switchFunciones(){
+	
+	int opcion;
+	
+	printf ("\n1. Consultar el mes del sistema e imprimir el mes en español.\n");
+	printf ("2. Crear un programa que devuelva el código ascii de una vocal ingresada.\n");
+	printf ("3. Crear un programa que devuelva el código ascii de un numero ingresado.\n");
+	printf ("0. salir al menu anterior\n");
+	
+	printf("\ningrese un numero segun su eleccion: ");
+	scanf("%d", &opcion);
+
+	switch (opcion){
+		
+		case 1: mesSsistema();
+		break;
+		case 2: asciiDeVocal();
+		break;
+		case 3: muestraAscciNumero();
+		break;
+		case 0: break;
+		break;
+		default: printf("opcion no valida ");
+	}
+}
